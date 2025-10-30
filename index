@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loja Online</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="main.js" defer></script>
+</head>
+<body>
+
+  <header>
+    <h1>Loja Online</h1>
+    <nav>
+      <ul>
+        <li><a href="#produtos">Produtos</a></li>
+        <li><a href="#cesto">Cesto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- Secção de Produtos -->
+   <section id="produtos">
+  <h2>Selecione os seus Produtos</h2>
+
+  <!-- Secção de filtros -->
+  <section id="filtros" class="filtros-container">
+    <section class="filtros-controles">
+
+      <select id="filtro-categoria">
+        <option value="">Todas as Categorias</option>
+      </select>
+
+      <select id="ordenar-preco">
+        <option value="">Ordenar por Preço</option>
+        <option value="asc">Preço Crescente</option>
+        <option value="desc">Preço Decrescente</option>
+      </select>
+
+      <input
+        type="text"
+        id="pesquisa-produto"
+        placeholder="Pesquisar produto..."
+      >
+    </section>
+  </section>
+
+  <section id="lista-produtos" class="produtos-container"></section>
+</section>
+
+
+    <!-- Secção do Cesto -->
+    <section id="cesto">
+      <h2>Produtos Selecionados</h2>
+      <section id="lista-cesto" class="cesto-container">
+        <p>O cesto está vazio.</p>
+      </section>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>2025</p>
+  </footer>
+
+</body>
+</html>
