@@ -1,0 +1,231 @@
+/* === Reset e estilo base === */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: #f5f6fa;
+  color: #2f3640;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* === Cabeçalho e rodapé === */
+header, footer {
+  background-color: #273c75;
+  color: white;
+  text-align: center;
+  padding: 1em 0;
+}
+
+header h1 {
+  margin-bottom: 10px;
+}
+
+nav ul {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  list-style: none;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: #74b9ff;
+}
+
+/* === Estrutura principal === */
+main {
+  flex: 1;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+}
+
+section {
+  margin-bottom: 20px;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #2d3436;
+}
+
+/* === Layout dos produtos (grid) === */
+.produtos-container,
+.cesto-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  justify-items: center;
+}
+
+/* === Estilo dos artigos === */
+article {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+article:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+article img {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+  background-color: #f1f2f6;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+article h3 {
+  font-size: 1rem;
+  color: #2f3640;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+article p {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+article .price {
+  font-weight: bold;
+  color: #27ae60;
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+/* === Botões === */
+button {
+  background-color: #0984e3;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+  background-color: #74b9ff;
+  transform: translateY(-2px);
+}
+
+/* === Cesto vazio === */
+#lista-cesto p {
+  text-align: center;
+  font-style: italic;
+  color: #636e72;
+}
+
+/* === Rodapé === */
+footer p {
+  font-size: 0.9rem;
+}
+
+/* === Cartões com botão alinhado === */
+article {
+  height: 100%; /* garante alturas consistentes no grid */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* empurra o botão para o fundo */
+}
+
+/* O botão fica no fundo do card */
+article button {
+  margin-top: auto;
+  background-color: #0984e3;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+article button:hover {
+  background-color: #74b9ff;
+  transform: translateY(-2px);
+}
+
+/* === Botão Remover === */
+.cesto-container button {
+  background-color: #d63031;
+}
+
+.cesto-container button:hover {
+  background-color: #ff7675;
+}
+
+/* === Total no cesto === */
+.total {
+  grid-column: 1 / -1; /* ocupa toda a largura do grid */
+  text-align: right;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #27ae60;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 2px solid #ccc;
+}
+
+.filtros-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+.filtros-controles {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: #f1f2f6;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  padding: 15px 20px;
+}
+
+.filtros-controles h3 {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 10px;
+  color: #2f3640;
+}
+
+.filtros-controles select,
+.filtros-controles input {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
