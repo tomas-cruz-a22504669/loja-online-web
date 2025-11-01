@@ -90,6 +90,8 @@ function renderizarCesto() {
 
   if (produtosSelecionados.length === 0) {
     secaoCesto.innerHTML = "<p>O cesto está vazio.</p>";
+    const opcoesCesto = document.getElementById("cesto-opcoes");
+    if (opcoesCesto) opcoesCesto.style.display = "none"; // esconder opções
     return;
   }
 
@@ -115,15 +117,17 @@ function renderizarCesto() {
     total += item.price;
   });
 
-  // Mostrar total no fim
-  const totalElemento = document.createElement("p");
-  totalElemento.classList.add("total");
-  totalElemento.textContent = `💰 Total: ${total.toFixed(2)} €`;
-  totalElemento.style.fontWeight = "bold";
-  totalElemento.style.textAlign = "center";
-  totalElemento.style.marginTop = "20px";
+  // Atualizar total
+  const totalElemento = document.getElementById("valor-total");
+  if (totalElemento) {
+    totalElemento.textContent = `Custo Total: ${total.toFixed(2)} €`;
+  }
 
-  secaoCesto.appendChild(totalElemento);
+  // Mostrar secção de opções de compra
+  const opcoesCesto = document.getElementById("cesto-opcoes");
+  if (opcoesCesto) {
+    opcoesCesto.style.display = "block";
+  }
 }
 
 let todosProdutos = [];
@@ -212,4 +216,53 @@ function aplicarFiltros() {
   else if (ordem === "desc") lista.sort((a, b) => b.price - a.price);
 
   renderizarProdutos(lista);
+}
+
+// === Atualizar total quando o cesto muda ===
+function atualizarTotal() {
+  const produtosSelecionados = JSON.parse(localStorage.getItem("produtos-selecionados")) || [];
+  const total = produtosSelecionados.reduce((acc, p) => acc + p.price, 0);
+  const totalElemento = document.getElementById("valor-total");
+
+  if (totalElemento) {
+    totalElemento.textContent = `Custo Total: ${total.toFixed(2)} €`;
+  }
+}
+
+// === Atualizar total sempre que o cesto é renderizado ===
+const renderizarCestoOriginal = renderizarCesto;
+renderizarCesto = function() {
+  renderizarCestoOriginal();
+  atualizarTotal();
+};
+
+// === Lidar com o botão de compra ===
+document.addEventListener("DOMContentLoaded", () => {
+  const botaoComprar = document.getElementById("botao-comprar");
+  if (botaoComprar) {
+    botaoComprar.addEventListener("click", finalizarCompra);
+  }
+});
+
+function finalizarCompra() {
+  const produtosSelecionados = JSON.parse(localStorage.getItem("produtos-selecionados")) || [];
+  const totalElemento = document.getElementById("valor-total");
+  const mensagemFinal = document.getElementById("mensagem-final");
+  const descontoEstudante = document.getElementById("desconto-estudante").checked;
+
+  if (produtosSelecionados.length === 0) {
+    mensagemFinal.textContent = "O cesto está vazio. Adicione produtos antes de comprar.";
+    return;
+  }
+
+  let total = produtosSelecionados.reduce((acc, p) => acc + p.price, 0);
+  if (descontoEstudante) {
+    total *= 0.8; // desconto de 20%
+    mensagemFinal.textContent = `Valor final a pagar (com eventuais descontos): ${total.toFixed(2)} €`;
+  } else {
+    mensagemFinal.textContent = `Valor final a pagar: ${total.toFixed(2)} €`;
+  }
+
+  mensagemFinal.style.fontWeight = "bold";
+  mensagemFinal.style.marginTop = "10px";
 }
