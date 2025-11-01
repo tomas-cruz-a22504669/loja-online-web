@@ -51,13 +51,27 @@
 </section>
 
 
-    <!-- Secção do Cesto -->
-    <section id="cesto">
-      <h2>Produtos Selecionados</h2>
-      <section id="lista-cesto" class="cesto-container">
-        <p>O cesto está vazio.</p>
-      </section>
-    </section>
+   <!-- Secção do Cesto -->
+<section id="cesto">
+  <h2>Produtos Selecionados</h2>
+
+  <section id="lista-cesto" class="cesto-container">
+    <p>O cesto está vazio.</p>
+  </section>
+
+  <section id="cesto-opcoes" style="display: none;">
+    <p id="valor-total">Custo Total: 0.00 €</p>
+
+    <label id="label-estudante">
+      <input type="checkbox" id="desconto-estudante">
+      És estudante da DEISI?
+    </label>
+
+    <button id="botao-comprar">Comprar</button>
+
+    <p id="mensagem-final" class="mensagem-final"></p>
+  </section>
+</section>
 
   </main>
 
